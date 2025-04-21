@@ -10,9 +10,11 @@ const Navigation = React.forwardRef((props, ref) => {
   // const { showBlog, FirstName } = config;
   const [isTop, setIsTop] = useState(true);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
   const navbarMenuRef = React.useRef();
   const navbarDimensions = useResizeObserver(navbarMenuRef);
   const navBottom = navbarDimensions ? navbarDimensions.bottom : 0;
+
   useScrollPosition(
     ({ prevPos, currPos }) => {
       if (!navbarDimensions) return;
@@ -31,52 +33,68 @@ const Navigation = React.forwardRef((props, ref) => {
       : setIsTop(true);
   }, [navBottom, navbarDimensions, ref, scrollPosition]);
 
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <Navbar
       ref={navbarMenuRef}
-      className={`px-3 fixed-top  ${!isTop ? "navbar-white" : "navbar-transparent"
-        }`}
+      className={`px-3 fixed-top ${!isTop ? "navbar-white" : "navbar-transparent"} ${isOpen ? "nav-open" : ""}`}
       expand="lg"
+      expanded={isOpen}
+      onToggle={handleToggle}
     >
-      <Navbar.Brand className="navbar-brand" href={process.env.PUBLIC_URL + "/#home"}>
+      <Navbar.Brand 
+        className="navbar-brand" 
+        href={process.env.PUBLIC_URL + "/#home"}
+        onClick={() => setIsOpen(false)}
+      >
         {`<${mainBody.firstName} />`}
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" className="toggler" />
+      <Navbar.Toggle 
+        aria-controls="basic-navbar-nav" 
+        className="toggler"
+      />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="navbar-nav mr-auto">
+        <Nav className="ms-auto">
           {/* {
             <NavLink className="nav-item lead">
               <Link to={process.env.PUBLIC_URL + "/blog"}>Blog</Link>
             </NavLink>
           } */}
           {repos.show && (
-
             <NavLink
               href={process.env.PUBLIC_URL + "/#projects"}
+              className="nav-item"
+              onClick={() => setIsOpen(false)}
             >
               Projects
             </NavLink>
           )}
           <NavLink
-            className="nav-item lead"
+            className="nav-item"
             href={about.resume}
             target="_blank"
             rel="noreferrer noopener"
+            onClick={() => setIsOpen(false)}
           >
             Resume
           </NavLink>
           {about.show && (
             <NavLink
-              className="nav-item lead"
+              className="nav-item"
               href={process.env.PUBLIC_URL + "/#aboutme"}
+              onClick={() => setIsOpen(false)}
             >
               About
             </NavLink>
           )}
           {skills.show && (
             <NavLink
-              className="nav-item lead"
+              className="nav-item"
               href={process.env.PUBLIC_URL + "/#skills"}
+              onClick={() => setIsOpen(false)}
             >
               Skills
             </NavLink>

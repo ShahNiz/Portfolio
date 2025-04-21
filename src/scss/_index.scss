@@ -83,12 +83,78 @@ code {
 }
 
 .title {
-  height: 100%;
-  left: 0;
-  right: 0;
-  color: #fff;
-  text-align: center;
-  margin-top: 0px;
+  position: relative;
+  z-index: 1;
+  
+  .container {
+    z-index: 2;
+    position: relative;
+  }
+  
+  h1 {
+    font-weight: bold;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #fff, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    
+    @media (max-width: 991px) {
+      font-size: 3rem;
+    }
+    
+    @media (max-width: 576px) {
+      font-size: 2.5rem;
+    }
+  }
+  
+  .lead.typist {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    
+    @media (max-width: 991px) {
+      font-size: 1.25rem;
+    }
+    
+    @media (max-width: 576px) {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+  
+  .socialicons {
+    color: white;
+    padding: 10px;
+    transition: all 0.3s ease;
+    
+    @media (max-width: 576px) {
+      font-size: 2em;
+      padding: 8px;
+    }
+    
+    &:hover {
+      color: #e6e6e6;
+      transform: scale(1.1);
+    }
+  }
+  
+  .btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    border-width: 2px;
+    transition: all 0.3s ease;
+    
+    @media (max-width: 576px) {
+      padding: 0.5rem 1.25rem;
+      font-size: 1rem;
+    }
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
 }
 
 .typist {
@@ -127,5 +193,424 @@ code {
   @extend .progress;
   & > * {
     animation: progress 1.5s ease-in-out forwards;
+  }
+}
+
+// Responsive container widths
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  
+  @media (min-width: 576px) {
+    max-width: 540px;
+  }
+  
+  @media (min-width: 768px) {
+    max-width: 720px;
+  }
+  
+  @media (min-width: 992px) {
+    max-width: 960px;
+  }
+  
+  @media (min-width: 1200px) {
+    max-width: 1140px;
+  }
+}
+
+// Responsive sections
+section {
+  padding: 4rem 0;
+  
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+  }
+  
+  @media (max-width: 576px) {
+    padding: 2rem 0;
+  }
+}
+
+// Responsive grid system
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  
+  @media (max-width: 768px) {
+    margin-right: -10px;
+    margin-left: -10px;
+  }
+}
+
+// Responsive images
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Responsive typography
+h1 {
+  @media (max-width: 768px) {
+    font-size: calc(1.8rem + 1.5vw);
+  }
+  
+  @media (max-width: 576px) {
+    font-size: calc(1.5rem + 1vw);
+  }
+}
+
+h2 {
+  @media (max-width: 768px) {
+    font-size: calc(1.5rem + 1vw);
+  }
+  
+  @media (max-width: 576px) {
+    font-size: calc(1.3rem + 0.8vw);
+  }
+}
+
+// Responsive spacing utilities
+.m-responsive {
+  @media (max-width: 768px) {
+    margin: 1rem !important;
+  }
+  
+  @media (max-width: 576px) {
+    margin: 0.75rem !important;
+  }
+}
+
+.p-responsive {
+  @media (max-width: 768px) {
+    padding: 1rem !important;
+  }
+  
+  @media (max-width: 576px) {
+    padding: 0.75rem !important;
+  }
+}
+
+// Navbar Styles
+.navbar {
+  transition: all 0.3s ease;
+  padding: 1rem;
+  
+  @media (max-width: 991px) {
+    padding: 0.5rem;
+    
+    .navbar-collapse {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    &.navbar-transparent .navbar-collapse {
+      background: rgba(255, 255, 255, 0.98);
+    }
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    
+    @media (max-width: 576px) {
+      font-size: 1.25rem;
+    }
+  }
+  
+  .nav-item {
+    margin: 0 0.5rem;
+    font-size: 1.1rem;
+    position: relative;
+    
+    @media (max-width: 991px) {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      text-align: center;
+      
+      &:not(:last-child) {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: currentColor;
+      transition: width 0.3s ease;
+    }
+    
+    &:hover::after {
+      width: 100%;
+    }
+  }
+  
+  .toggler {
+    border: none;
+    padding: 0.25rem;
+    
+    &:focus {
+      box-shadow: none;
+    }
+  }
+  
+  &.nav-open {
+    background: white !important;
+  }
+}
+
+.navbar-white {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-transparent {
+  background: transparent;
+}
+
+// Background Animation
+.bgstyle {
+  animation: AnimationName 30s ease infinite;
+}
+
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+// Skills Section Styles
+#skills {
+  .container {
+    @media (max-width: 768px) {
+      padding: 2rem 1rem !important;
+    }
+  }
+  
+  .display-4 {
+    @media (max-width: 768px) {
+      font-size: 2.5rem;
+    }
+    
+    @media (max-width: 576px) {
+      font-size: 2rem;
+    }
+  }
+  
+  .skills-tabs {
+    .nav-tabs {
+      border: none;
+      margin-bottom: 1.5rem;
+      justify-content: center;
+      
+      @media (max-width: 576px) {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .nav-item {
+        margin: 0 0.5rem;
+        
+        @media (max-width: 576px) {
+          margin: 0.25rem 0;
+          width: 100%;
+          text-align: center;
+        }
+        
+        .nav-link {
+          border: none;
+          background: transparent;
+          color: #666;
+          font-size: 1.1rem;
+          padding: 0.5rem 1.5rem;
+          border-radius: 25px;
+          transition: all 0.3s ease;
+          
+          @media (max-width: 768px) {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+          }
+          
+          &:hover {
+            color: #333;
+          }
+          
+          &.active {
+            background: #007bff;
+            color: white;
+            
+            &:hover {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .tab-content {
+    .row {
+      @media (max-width: 768px) {
+        margin: 0 -0.5rem;
+      }
+    }
+    
+    .skill-card {
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      
+      @media (max-width: 768px) {
+        padding: 1rem;
+      }
+      
+      &:hover {
+        transform: translateY(-5px);
+      }
+      
+      .skill-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #007bff;
+        
+        @media (max-width: 768px) {
+          font-size: 2rem;
+        }
+      }
+      
+      .skill-name {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        
+        @media (max-width: 768px) {
+          font-size: 1rem;
+        }
+      }
+      
+      .skill-level {
+        height: 8px;
+        border-radius: 4px;
+        background: #e9ecef;
+        overflow: hidden;
+        
+        .skill-progress {
+          height: 100%;
+          background: #007bff;
+          border-radius: 4px;
+          transition: width 1s ease;
+        }
+      }
+    }
+  }
+}
+
+// About Section Styles
+#aboutme {
+  padding: 5rem 0;
+  background: #f8f9fa;
+  
+  @media (max-width: 991px) {
+    padding: 3rem 0;
+  }
+  
+  @media (max-width: 576px) {
+    padding: 2rem 0;
+  }
+  
+  .container {
+    @media (max-width: 991px) {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .col-5 {
+      @media (max-width: 991px) {
+        margin-bottom: 2rem;
+      }
+      
+      img {
+        max-width: 100%;
+        height: auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        
+        &:hover {
+          transform: scale(1.02);
+        }
+        
+        @media (max-width: 1200px) {
+          width: 280px;
+          height: 250px;
+        }
+      }
+    }
+    
+    .display-4 {
+      @media (max-width: 991px) {
+        font-size: 2.5rem;
+        margin-bottom: 2rem !important;
+      }
+      
+      @media (max-width: 576px) {
+        font-size: 2rem;
+      }
+    }
+    
+    .lead {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #666;
+      margin-bottom: 2rem;
+      
+      @media (max-width: 991px) {
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+      
+      @media (max-width: 576px) {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+    }
+    
+    .btn-outline-dark {
+      padding: 0.75rem 2rem;
+      font-size: 1.1rem;
+      border-width: 2px;
+      transition: all 0.3s ease;
+      
+      @media (max-width: 576px) {
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+      }
+      
+      &:hover {
+        background: #343a40;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+    }
   }
 }
